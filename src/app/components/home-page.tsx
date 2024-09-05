@@ -25,6 +25,7 @@ export default function HomePage() {
       <div className={styles.videoBackground}>
         <video autoPlay loop muted>
           <source src="../../assets/synthwave-animation.webm" type="video/webm"/>
+          Your browser does not support the video background.
         </video>
       </div>
 
