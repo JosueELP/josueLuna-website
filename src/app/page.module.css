@@ -65,10 +65,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  top: 45%;
+  float: left;
+  top: 30%;
   left: 50%;
-  margin-top: -250px; /* Half the height */
-  margin-left: -230px; /* Half the width */
+  margin-top: -250px;
+  margin-left: -230px; 
 }
 
 .navBar nav {
@@ -127,7 +128,6 @@
 
 .footer {
   width: 100%;
-  height: 100%;
   position: absolute;
   bottom: 0;
 }
