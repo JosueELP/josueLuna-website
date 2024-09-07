@@ -135,6 +135,77 @@
   bottom: 0;
 }
 
+.projectsContainer {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-height: 70%;
+}
+
+.projectsGrid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  overflow: scroll;
+  width: 60%;
+}
+
+.card {
+  margin-right: 15px;
+  margin-left: 15px;
+  margin-bottom: 25px;
+  width: 300px;
+  height: 320px;
+  border: 2px solid #a4958b;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cardHeader {
+  width: 100%;
+  border-bottom: 2px solid #a4958b; 
+  display: flex;
+  justify-content: space-between;
+}
+
+.cardHeaderLogo {
+  display: flex;
+  vertical-align: middle;
+  align-items: center;
+  padding: 5px;
+}
+
+.cardTitle {
+  padding: 10px;
+  display: flex;
+  vertical-align: middle;
+  align-items: center;
+  font-size: 18px;
+  overflow: hidden;
+  text-wrap: wrap;
+}
+
+.cardBody {
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  display: flex;
+  font-size: 14px;
+  overflow: scroll;
+  text-wrap: wrap;
+}
+
+.cardFooter {
+  display: flex;
+  padding: 10px;
+  border-top: 2px solid #a4958b;
+  justify-content: flex-end;
+  font-size: 14px;
+}
+
 .footer svg {
   position: absolute;
   bottom: 0;
@@ -178,20 +249,9 @@
 
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
-  .card:hover {
-    background: rgba(var(--card-rgb), 0.1);
-    border: 1px solid rgba(var(--card-border-rgb), 0.15);
-  }
-
-  .card:hover span {
-    transform: translateX(4px);
-  }
 }
 
 @media (prefers-reduced-motion) {
-  .card:hover span {
-    transform: none;
-  }
 }
 
 /* Mobile */
