@@ -21,9 +21,8 @@ export default function HomePage() {
 
   const getVideoUrl = () => {
     switch (os) {
-      case "MacOS":
-        return "../../assets/synthwave-animation.mov"
       case "iOS":
+      case "MacOS":
         return "../../assets/synthwave-animation.mov"
       default:
         return "../../assets/synthwave-animation.webm"
