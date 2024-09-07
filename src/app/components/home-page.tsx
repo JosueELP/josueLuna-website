@@ -23,8 +23,14 @@ export default function HomePage() {
       </div>
 
       <div className={styles.videoBackground}>
+        {/* TODO: play correct video depending of OS, right now, it only displays the first video tag */}
         <video autoPlay loop muted>
-          <source src="../../assets/synthwave-animation.webm" type="video/webm"/>
+          <source src="../../assets/synthwave-animation.mov" type="video/quicktime"/>
+          Your browser does not support the video background.
+        </video>
+
+        <video autoPlay loop muted>
+          <source src="../../assets/synthwave-animation.webm" type="video/webm; codecs=hvc1"/>
           Your browser does not support the video background.
         </video>
       </div>
