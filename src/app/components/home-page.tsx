@@ -1,8 +1,35 @@
+"use client";
+
+import { useState, useEffect } from 'react'
 import styles from "../page.module.css";
 
 const classNames = require('classnames');
 
 export default function HomePage() {
+  const [os, setOS] = useState<string | null>(null)
+
+  useEffect(() => {
+    const userAgent = window.navigator.userAgent.toLowerCase()
+    if (userAgent.indexOf("win") > -1) setOS("Windows")
+    else if (userAgent.indexOf("mac") > -1) setOS("MacOS")
+    else if (userAgent.indexOf("linux") > -1) setOS("Linux")
+    else if (userAgent.indexOf("android") > -1) setOS("Android")
+    else if (userAgent.indexOf("iphone") > -1 || userAgent.indexOf("ipad") > -1) setOS("iOS")
+    else setOS("Unknown")
+    console.log("OS: ", userAgent)
+  }, [])
+
+  const getVideoUrl = () => {
+    switch (os) {
+      case "MacOS":
+        return "../../assets/synthwave-animation.mov"
+      case "iOS":
+        return "../../assets/synthwave-animation.mov"
+      default:
+        return "../../assets/synthwave-animation.webm"
+    }
+  }
+
   return (
     <div className={styles.main} id="homePage">
       <div className={classNames(styles.fontAiWritter, styles.absolute)}>
@@ -23,14 +50,8 @@ export default function HomePage() {
       </div>
 
       <div className={styles.videoBackground}>
-        {/* TODO: play correct video depending of OS, right now, it only displays the first video tag */}
         <video autoPlay loop muted>
-          <source src="../../assets/synthwave-animation.mov" type="video/quicktime"/>
-          Your browser does not support the video background.
-        </video>
-
-        <video autoPlay loop muted>
-          <source src="../../assets/synthwave-animation.webm" type="video/webm; codecs=hvc1"/>
+          <source src={getVideoUrl()}/>
           Your browser does not support the video background.
         </video>
       </div>
