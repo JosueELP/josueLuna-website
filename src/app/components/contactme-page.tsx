@@ -8,7 +8,7 @@ export default function ContactMe() {
     <div className={classNames(styles.main, styles.fontAiWritter)} id="contactMe">
       <div className={classNames(styles.textCenter, styles.spaceDown)}>
         <h3 className={classNames(styles.spaceDown)}>Let's stay connected!</h3>
-        <p>If you want to stay in touch with me, please make use of my social media/email</p>
+        <p className={classNames(styles.contactInfo)}>If you want to stay in touch with me, please make use of my social media/email</p>
       </div>
       <div className={classNames(styles.socialLogos)}>
         <a href="https://github.com/JosueELP" target="_blank">

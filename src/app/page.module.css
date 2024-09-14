@@ -259,11 +259,90 @@
   .content {
     padding: 4rem;
   }
+
+  .videoBackground video {
+    object-fit: cover;
+  }
+
+  .photo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .eclipse {
+    margin-bottom: 20px;
+  }
+
+  .cardTitle {
+    font-size: 15px;
+  }
+  
+  .cardBody {
+    font-size: 12px;
+  }
+
+  .cardFooter {
+    font-size: 10px;
+  }
+
+  .biography {
+    text-align: left;
+  }
+
+  .smaller {
+    font-size: 12px;
+  }
+
+  .afterName h3 {
+    font-size: 15px;
+    text-align: center;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .afterName {
+    justify-content: space-between;
+  }
+
+  .contactInfo {
+    font-size: 14px;
+    margin-left: 15px;
+    margin-right: 15px;
+  }
 }
 
 /* Tablet and Smaller Desktop */
 @media (min-width: 701px) and (max-width: 1120px) {
-  .grid {
-    grid-template-columns: repeat(2, 50%);
+  .videoBackground video {
+    object-fit: cover;
+  }
+
+  .photo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .eclipse {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .biography {
+    text-align: center;
+  }
+
+  .cardTitle {
+    font-size: 15px;
+  }
+  
+  .cardBody {
+    font-size: 14px;
+  }
+
+  .cardFooter {
+    font-size: 12px;
   }
 }
