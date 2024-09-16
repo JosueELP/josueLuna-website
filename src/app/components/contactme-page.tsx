@@ -3,12 +3,16 @@ import styles from "../page.module.css";
 
 const classNames = require('classnames');
 
-export default function ContactMe() {
+interface ContactMeProps {
+  dictionary: { [key: string]: string }
+}
+
+export default function ContactMe({ dictionary } : ContactMeProps) {
   return (
     <div className={classNames(styles.main, styles.fontAiWritter)} id="contactMe">
       <div className={classNames(styles.textCenter, styles.spaceDown)}>
-        <h3 className={classNames(styles.spaceDown)}>Let's stay connected!</h3>
-        <p className={classNames(styles.contactInfo)}>If you want to stay in touch with me, please make use of my social media/email</p>
+        <h3 className={classNames(styles.spaceDown)}>{dictionary.contactMePageTitle}</h3>
+        <p className={classNames(styles.contactInfo)}>{dictionary.contactMePageDescription}</p>
       </div>
       <div className={classNames(styles.socialLogos)}>
         <a href="https://github.com/JosueELP" target="_blank">

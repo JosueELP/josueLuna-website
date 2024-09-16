@@ -140,6 +140,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
   max-height: 70%;
 }
 
@@ -213,6 +214,29 @@
 
 .biography {
   text-align: center;
+}
+
+.switcher {
+  position: absolute;
+  right: 0;
+  z-index: 100;
+  margin-top: 15px;
+  margin-right: 15px;
+}
+
+.switcher button {
+  padding: 2px;
+  margin-right: 5px;
+  text-decoration: none;
+  background-color: var(--background-color);
+  color: var(--font-color);
+  font-family: var(--font-ai-writter);
+  font-weight: 700;
+  border: 2px solid #a4958b;
+}
+
+.switcher :hover {
+  background-color: var(--background-color-hover);
 }
 
 .absolute {
@@ -297,12 +321,15 @@
   .afterName h3 {
     font-size: 15px;
     text-align: center;
-    padding-left: 20px;
-    padding-right: 20px;
+    margin-bottom: 10px;
+    padding: 0;
   }
 
   .afterName {
+    flex-direction: column;
     justify-content: space-between;
+    margin-left: 10px;
+    margin-right: 10px;
   }
 
   .contactInfo {
@@ -310,6 +337,24 @@
     margin-left: 15px;
     margin-right: 15px;
   }
+
+  .switcher {
+    bottom: 0;
+    margin-top: 0;
+    margin-bottom: 10px;
+    margin-right: 5px;
+  }
+
+  .navBar nav {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .navBar nav a {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  
 }
 
 /* Tablet and Smaller Desktop */
