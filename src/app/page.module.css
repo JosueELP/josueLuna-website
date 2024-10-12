@@ -232,11 +232,98 @@
   color: var(--font-color);
   font-family: var(--font-ai-writter);
   font-weight: 700;
-  border: 2px solid #a4958b;
+  border: 0px;
+  padding: 5px;
+  border-radius: 30%;
+  box-shadow: 0px 0px 10px 3px rgba(163, 149, 137, 0.57);
+  cursor: pointer;
 }
 
 .switcher :hover {
   background-color: var(--background-color-hover);
+}
+
+/* Download CV Button classes */
+.cvDownloadContainer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-family: Arial, sans-serif;
+  margin-top: 25px;
+}
+.dropdown {
+  position: relative;
+}
+.dropdownToggle {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #333;
+  background-color: #ffffff00;
+  border: 1px solid #a4958b;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.dropdownToggle:hover {
+  background-color: #b9a89d;
+  color: #ffffff;
+}
+.dropdownToggle:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #b9a89d;
+}
+.dropdownMenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 10;
+  margin-top: 0.25rem;
+  width: 10rem;
+  background-color: #a4958b00;
+  border: 1px solid #a4958b;
+  border-radius: 0.375rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+.dropdownItem {
+  display: block;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  color: #333;
+  text-align: left;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+.dropdownItem:hover {
+  background-color: #b9a89d;
+  color: #ffffff;
+}
+.downloadButton {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #fff;
+  background-color: #a4958b;
+  border: none;
+  border-radius: 0.375rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.downloadButton:hover {
+  background-color: #8d8078;
+}
+.downloadButton:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #b9a89d;
+}
+.downloadIcon {
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.5rem;
 }
 
 .absolute {

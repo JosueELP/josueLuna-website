@@ -22,6 +22,10 @@
   "aboutMePageBiographyP7": "Por eso, si no conozco una tecnología, puedes estar seguro",
   "aboutMePageBiographyP8": "que puedo aprenderlo si el trabajo lo requiere.",
   "projectsPageTitle": "Algunos de mis proyectos personales",
-  "contactMePageTitle": "Sigamos en contacto!",
-  "contactMePageDescription": "Si deseas mantenerte en contacto conmigo, utiliza mis redes sociales/correo electrónico."
+  "contactMePageTitle": "¡Sigamos en contacto!",
+  "contactMePageDescription": "Si deseas mantenerte en contacto conmigo, utiliza mis redes sociales/correo electrónico.",
+  "contactMeDownloadButton": "¡Descarga mi CV!",
+  "contactMeDownloadArrow": "<---",
+  "esLanguage": "Español",
+  "enLanguage": "Inglés"
 }

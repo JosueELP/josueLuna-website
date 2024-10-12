@@ -23,5 +23,9 @@
   "aboutMePageBiographyP8": "that I can learn it if the job requires it.",
   "projectsPageTitle": "Some of my personal projects",
   "contactMePageTitle": "Let's stay connected!",
-  "contactMePageDescription": "If you want to stay in touch with me, please make use of my social media/email"
+  "contactMePageDescription": "If you want to stay in touch with me, please make use of my social media/email",
+  "contactMeDownloadButton": "Download my CV!",
+  "contactMeDownloadArrow": "<---",
+  "esLanguage": "Spanish",
+  "enLanguage": "English"
 }
