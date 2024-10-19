@@ -1,4 +1,5 @@
 import styles from "../page.module.css";
+import Timeline from './dynamic-timeline'
 
 const classNames = require('classnames');
 
@@ -8,8 +9,8 @@ interface AboutMeProps {
 
 export default function AboutMe({ dictionary } : AboutMeProps) {
   return (
-    <div className={classNames(styles.main, styles.fontAiWritter)} id="aboutMe">
-      <div className={styles.bioContainer}>
+    <div className={classNames(styles.main, styles.fontAiWritter, styles.aboutMeContainer)} id="aboutMe">
+      <div className={classNames(styles.bioContainer, styles.spaceDown)}>
         <div className={classNames(styles.photo)}>
           <div className={styles.eclipse}></div>
           <div>
@@ -35,6 +36,15 @@ export default function AboutMe({ dictionary } : AboutMeProps) {
             {dictionary.aboutMePageBiographyP7}<br/>
             {dictionary.aboutMePageBiographyP8}<br/>
           </p>
+        </div>
+      </div>
+      <div className={classNames(styles.aboutMeExtraContent)}>
+        <div>
+          <h3>{dictionary.aboutMePageTecnologies}</h3>
+        </div>
+        <div>
+          <h3>{dictionary.aboutMePageTimeline}</h3>
+          <Timeline dictionary={dictionary}/>
         </div>
       </div>
     </div>

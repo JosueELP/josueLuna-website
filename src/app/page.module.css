@@ -326,6 +326,33 @@
   margin-right: 0.5rem;
 }
 
+.aboutMeExtraContent {
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+  margin-top: 30px;
+}
+
+.flexInlineContainer {
+  display: flex;
+}
+
+.flexSpaceBetween {
+  justify-content: space-between;
+}
+
+.halfWidth { 
+  width: 50%;
+}
+
+.leftSpacing {
+  margin-left: 15px;
+}
+
+.rightSpacing {
+  margin-right: 15px;
+}
+
 .absolute {
   position: absolute;
 }
@@ -348,6 +375,10 @@
 
 .bold {
   font-weight: 700;
+}
+
+.spaceTop {
+  margin-top: 15px;
 }
 
 .spaceDown {
@@ -440,6 +471,16 @@
   .navBar nav a {
     margin-left: 10px;
     margin-right: 10px;
+  }
+
+  .aboutMeExtraContent {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+  }
+
+  .aboutMeContainer {
+    height: auto;
   }
   
 }

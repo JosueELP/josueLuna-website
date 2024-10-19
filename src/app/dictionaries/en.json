@@ -21,11 +21,22 @@
   "aboutMePageBiographyP6": "and deliver the best possible code/product.",
   "aboutMePageBiographyP7": "That's why, if I don't know a technology, you can be sure",
   "aboutMePageBiographyP8": "that I can learn it if the job requires it.",
+  "aboutMePageTecnologies": "Techonologies that I have worked with",
+  "aboutMePageTimeline": "A little view of my experience",
   "projectsPageTitle": "Some of my personal projects",
   "contactMePageTitle": "Let's stay connected!",
   "contactMePageDescription": "If you want to stay in touch with me, please make use of my social media/email",
   "contactMeDownloadButton": "Download my CV!",
   "contactMeDownloadArrow": "<---",
   "esLanguage": "Spanish",
-  "enLanguage": "English"
+  "enLanguage": "English",
+  "timeLineDataYear1": "2021 - Present",
+  "timeLineDataTitle1": "Digital OnUs by Techmahindra",
+  "timeLineDataDescription1": "Backend developer\nSpring boot, Java\nReactJS, NodeJS\nUnit Testing\nBug hunter/fixer",
+  "timeLineDataYear2": "2022",
+  "timeLineDataTitle2": "Graduated from School",
+  "timeLineDataDescription2": "Completed formal education and received degree",
+  "timeLineDataYear3": "2017",
+  "timeLineDataTitle3": "Started Engineering!",
+  "timeLineDataDescription3": "Began journey in software engineering"
 }

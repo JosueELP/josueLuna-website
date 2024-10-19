@@ -1,0 +1,119 @@
+.containerTimeline {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 1rem;
+  background-color: var(--background-color);
+  color: #4a4a4a;
+  font-family: var(--font-ai-writter);
+  color: var(--font-color);
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.timeline {
+  position: relative;
+  padding-left: 2rem;
+}
+
+.item {
+  margin-bottom: 2rem;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.animatingItem {
+  z-index: 10;
+}
+
+.dot {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  position: absolute;
+  left: -1.5rem;
+  top: 0.375rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.activeDot {
+  background-color: #a4958b;
+}
+
+.inactiveDot {
+  background-color: #d8cdc5;
+}
+
+.animatingDot {
+  animation: moveDot 0.3s ease;
+}
+
+.line {
+  position: absolute;
+  left: -1.125rem;
+  top: 1.5rem;
+  bottom: -2rem;
+  width: 0.125rem;
+  background-color: #a4958b;
+}
+
+.yearContainer {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.25rem;
+}
+
+.year {
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-right: 0.5rem;
+}
+
+.itemTitle {
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.description {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  white-space: pre-line;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 0.3s ease, max-height 0.3s ease;
+}
+
+.expandedDescription {
+  opacity: 1;
+  max-height: 1000px;
+}
+
+@keyframes moveDot {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+  .itemTitle {
+    font-size: 1rem;
+  }
+
+  .description {
+    font-size: 0.75rem;
+  }
+  
+  
+}
