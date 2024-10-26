@@ -1,5 +1,6 @@
 import styles from "../css/page.module.css";
 import Timeline from './dynamic-timeline'
+import Tecnologies from './technologies-stack'
 
 const classNames = require('classnames');
 
@@ -39,10 +40,11 @@ export default function AboutMe({ dictionary } : AboutMeProps) {
         </div>
       </div>
       <div className={classNames(styles.aboutMeExtraContent)}>
-        <div>
+        <div className={styles.aboutMeExtraContentContainer}>
           <h3>{dictionary.aboutMePageTecnologies}</h3>
+          <Tecnologies dictionary={dictionary}/>
         </div>
-        <div>
+        <div className={styles.aboutMeExtraContentContainer}> 
           <h3>{dictionary.aboutMePageTimeline}</h3>
           <Timeline dictionary={dictionary}/>
         </div>
