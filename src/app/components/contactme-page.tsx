@@ -1,5 +1,5 @@
 import Footer from '../components/footer';
-import styles from "../page.module.css";
+import styles from "../css/page.module.css";
 import DownloadButton from './cv-download-button'
 
 const classNames = require('classnames');

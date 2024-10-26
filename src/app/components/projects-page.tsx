@@ -2,7 +2,7 @@
 
 import ProjectCard from '../components/project-card';
 import { useState, useEffect } from 'react'
-import styles from "../page.module.css";
+import styles from "../css/page.module.css";
 
 const classNames = require('classnames');
 

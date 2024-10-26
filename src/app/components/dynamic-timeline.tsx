@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState } from 'react'
-import '../timeline.css'
+import '../css/timeline.css'
 
 interface TimelineItem {
   id: number
@@ -11,7 +11,6 @@ interface TimelineItem {
 }
 
 const constructTimeLineData = dictionary => {
-  console.log("LOL: ", dictionary.timeLineDataYear1);
   const initialTimelineData: TimelineItem[] = [
     {
       id: 1,

@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation'
 import { usePathname } from 'next/navigation'
-import styles from "../page.module.css";
+import styles from "../css/page.module.css";
 
 const classNames = require('classnames');
 
