@@ -10,7 +10,7 @@ interface AboutMeProps {
 
 export default function AboutMe({ dictionary } : AboutMeProps) {
   return (
-    <div className={classNames(styles.main, styles.fontAiWritter, styles.aboutMeContainer)} id="aboutMe">
+    <div className={classNames(styles.main, styles.fontAiWritter, styles.aboutMeContainer, styles.paddingTop, styles.height)} id="aboutMe">
       <div className={classNames(styles.bioContainer, styles.spaceDown)}>
         <div className={classNames(styles.photo)}>
           <div className={styles.eclipse}></div>

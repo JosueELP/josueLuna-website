@@ -149,7 +149,7 @@
   justify-content: center;
   flex-wrap: wrap;
   overflow: scroll;
-  width: 60%;
+  width: 80%;
 }
 
 .card {
@@ -329,7 +329,7 @@
 .aboutMeExtraContent {
   display: flex;
   justify-content: space-between;
-  width: 50%;
+  width: 70%;
   margin-top: 30px;
 }
 
@@ -432,12 +432,20 @@
   margin-top: 15px;
 }
 
+.paddingTop {
+  padding-top: 9%;
+}
+
 .spaceDown {
   margin-bottom: 15px;
 }
 
 .textCenter {
   text-align: center;
+}
+
+.height {
+  height: 100%;
 }
 
 /* Enable hover only on non-touch devices */
