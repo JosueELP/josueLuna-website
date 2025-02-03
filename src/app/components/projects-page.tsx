@@ -20,6 +20,9 @@ export default function Projects({ dictionary } : ProjectsPageProps) {
         const userName = process.env.NEXT_PUBLIC_GITHUB_USERNAME ? process.env.NEXT_PUBLIC_GITHUB_USERNAME : defaultUserName;
   
         const reposData = await fetchUserRepos(userName);
+        reposData.sort((a, b) => {
+          return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
+        })
         setReposData(reposData)
       } catch (error) {
         console.error('Error fetching data:', error);

@@ -8,7 +8,15 @@
 
   --background-color: #fff0e5;
   --background-color-hover: #d6c8bb;
-  --font-color: #000000; 
+  --font-color: #000000;
+  
+  --java-color: #ffaeae;
+  --typescript-color: #8ab5e7;
+  --javascript-color: #ebdc6c;
+  --html-color: #ecbc85;
+  --pug-color: #c9a298;
+  --ruby-color: #fc8585;
+  --css-color: #b6a6f5;
 }
 
 * {

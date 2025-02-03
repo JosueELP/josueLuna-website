@@ -151,7 +151,10 @@
   flex-wrap: wrap;
   overflow: scroll;
   overflow-x: hidden;
+  margin-bottom: 20px;
+  padding-top: 15px;
   width: 80%;
+  box-shadow: 7px 7px 10px 1px rgba(163, 149, 137, 0.57);
 }
 
 .card {
@@ -448,6 +451,35 @@
 
 .height {
   height: 100%;
+}
+
+/* Colors for Programming Languages */
+.java {
+  background-color: var(--java-color);
+}
+
+.javascript {
+  background-color: var(--javascript-color);
+}
+
+.typescript {
+  background-color: var(--typescript-color);
+}
+
+.html {
+  background-color: var(--html-color);
+}
+
+.pug {
+  background-color: var(--pug-color);
+}
+
+.ruby {
+  background-color: var(--ruby-color);
+}
+
+.css {
+  background-color: var(--css-color);
 }
 
 /* Enable hover only on non-touch devices */
