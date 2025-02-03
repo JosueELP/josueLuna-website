@@ -20,7 +20,6 @@ export default function HomePage({ dictionary } : HomePageProps) {
     else if (userAgent.indexOf("android") > -1) setOS("Android")
     else if (userAgent.indexOf("iphone") > -1 || userAgent.indexOf("ipad") > -1) setOS("iOS")
     else setOS("Unknown")
-    console.log("OS: ", userAgent)
   }, [])
 
   const getVideoUrl = () => {

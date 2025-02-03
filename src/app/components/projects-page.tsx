@@ -5,13 +5,38 @@ import { useState, useEffect } from 'react'
 import styles from "../css/page.module.css";
 
 const classNames = require('classnames');
+const defaultUserName = "";
 
 interface ProjectsPageProps {
   dictionary: { [key: string]: string }
 }
 
 export default function Projects({ dictionary } : ProjectsPageProps) {
-  const [items, setItems] = useState(['1', '2', '3', '4', '5', '6', '7', '8', '9'])
+  const [reposData, setReposData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const userName = process.env.NEXT_PUBLIC_GITHUB_USERNAME ? process.env.NEXT_PUBLIC_GITHUB_USERNAME : defaultUserName;
+  
+        const reposData = await fetchUserRepos(userName);
+        setReposData(reposData)
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+  
+    const fetchUserRepos = async (username : String) => {
+      const response = await fetch(`https://api.github.com/users/${username}/repos`, {
+        headers: {
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_GITHUB_TOKEN}`,
+        },
+      });
+      return response.json();
+    };
+  
+    fetchData();
+  }, [process.env.NEXT_PUBLIC_GITHUB_USERNAME, process.env.NEXT_PUBLIC_GITHUB_TOKEN]);
 
   return (
     <div className={classNames(styles.main, styles.fontAiWritter)} id="projects">
@@ -20,8 +45,14 @@ export default function Projects({ dictionary } : ProjectsPageProps) {
           <h3 className={classNames(styles.spaceDown)}>{dictionary.projectsPageTitle}</h3>
         </div>
         <div className={classNames(styles.projectsGrid)}>
-          {items.map((item, index) => (
-            <ProjectCard/> 
+          {reposData.map((repo) => (
+            <ProjectCard
+              key={repo.id}
+              repoName={repo.name}
+              repoLink={repo.html_url}
+              repoDescription={repo.description || "No description available"}
+              repoLanguages={[repo.language]}
+            />
           ))}
         </div>
       </div>
