@@ -15,7 +15,7 @@ export default function HomePage({ dictionary } : HomePageProps) {
   useEffect(() => {
     const userAgent = window.navigator.userAgent.toLowerCase()
     if (userAgent.indexOf("win") > -1) setOS("Windows")
-    else if (userAgent.indexOf("mac") > -1) setOS("MacOS")
+    else if (userAgent.indexOf("applewebkit") > -1) setOS("MacOS")
     else if (userAgent.indexOf("linux") > -1) setOS("Linux")
     else if (userAgent.indexOf("android") > -1) setOS("Android")
     else if (userAgent.indexOf("iphone") > -1 || userAgent.indexOf("ipad") > -1) setOS("iOS")
@@ -26,9 +26,9 @@ export default function HomePage({ dictionary } : HomePageProps) {
     switch (os) {
       case "iOS":
       case "MacOS":
-        return "../../assets/synthwave-animation.mov"
+        return "iOS"
       default:
-        return "../../assets/synthwave-animation.webm"
+        return "other"
     }
   }
 
@@ -52,10 +52,19 @@ export default function HomePage({ dictionary } : HomePageProps) {
       </div>
 
       <div className={styles.videoBackground}>
-        <video autoPlay loop muted>
-          <source src={getVideoUrl()}/>
+        {getVideoUrl() === "iOS" && 
+        <video autoPlay loop muted playsInline>
+          <source src="../../assets/synthwave-animation.mov"/>
           {dictionary.browserVideoFallback}
         </video>
+        }
+
+        {getVideoUrl() === "other" && 
+        <video autoPlay loop muted>
+          <source src="../../assets/synthwave-animation.webm"/>
+          {dictionary.browserVideoFallback}
+        </video>
+        }
       </div>
 
     </div>
