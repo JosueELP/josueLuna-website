@@ -14,11 +14,11 @@ export default function HomePage({ dictionary } : HomePageProps) {
 
   useEffect(() => {
     const userAgent = window.navigator.userAgent.toLowerCase()
-    if (userAgent.indexOf("win") > -1) setOS("Windows")
-    else if (userAgent.indexOf("applewebkit") > -1) setOS("MacOS")
+    if (userAgent.indexOf("firefox") > -1 || userAgent.indexOf("chrome") > -1) setOS("other")
+    else if (userAgent.indexOf("applewebkit") > -1 || userAgent.indexOf("safari") > -1) setOS("MacOS")
+    else if (userAgent.indexOf("iphone") > -1 || userAgent.indexOf("ipad") > -1) setOS("iOS")
     else if (userAgent.indexOf("linux") > -1) setOS("Linux")
     else if (userAgent.indexOf("android") > -1) setOS("Android")
-    else if (userAgent.indexOf("iphone") > -1 || userAgent.indexOf("ipad") > -1) setOS("iOS")
     else setOS("Unknown")
   }, [])
 

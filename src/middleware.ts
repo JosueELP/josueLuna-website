@@ -6,7 +6,8 @@ const defaultLocale = 'en-US'
 
 function getLocale(request: NextRequest) {
   const acceptLanguage = request.headers.get('accept-language')
-  return acceptLanguage ? acceptLanguage.split(',')[0] : defaultLocale
+  const localeValue = acceptLanguage ? acceptLanguage.split(',')[0] : defaultLocale
+  return locales.includes(localeValue) ? localeValue : defaultLocale;
 }
 
 export function middleware(request: NextRequest) {
