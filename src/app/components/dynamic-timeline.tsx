@@ -10,7 +10,7 @@ interface TimelineItem {
   description: string
 }
 
-const constructTimeLineData = dictionary => {
+const constructTimeLineData = (dictionary : { [key: string]: string }) => {
   const initialTimelineData: TimelineItem[] = [
     {
       id: 1,
