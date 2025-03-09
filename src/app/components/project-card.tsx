@@ -7,7 +7,7 @@ interface ProjectsCardProps {
   repoName: string,
   repoLink: string,
   repoDescription: string,
-  repoLanguages: string[]
+  repoLanguages: string
 }
 
 export default function ProjectCard({ repoName, repoLink, repoDescription, repoLanguages } : ProjectsCardProps) {
@@ -28,7 +28,7 @@ export default function ProjectCard({ repoName, repoLink, repoDescription, repoL
       </div>
       <div className={classNames(styles.cardFooter, styles.bold)}>
         <p>Primary language: </p>
-        <p className={classNames(styles[repoLanguages[0].toLowerCase()])}>{repoLanguages}</p>
+        <p className={classNames(styles[repoLanguages.toLowerCase()])}>{repoLanguages}</p>
       </div>
     </div>
   );

@@ -7,12 +7,21 @@ import styles from "../css/page.module.css";
 const classNames = require('classnames');
 const defaultUserName = "";
 
+interface GitHubRepo {
+  id: number
+  name: string
+  html_url: string
+  description: string | null
+  language: string
+  created_at: string
+}
+
 interface ProjectsPageProps {
   dictionary: { [key: string]: string }
 }
 
 export default function Projects({ dictionary } : ProjectsPageProps) {
-  const [reposData, setReposData] = useState([]);
+  const [reposData, setReposData] = useState<GitHubRepo[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -20,7 +29,7 @@ export default function Projects({ dictionary } : ProjectsPageProps) {
         const userName = process.env.NEXT_PUBLIC_GITHUB_USERNAME ? process.env.NEXT_PUBLIC_GITHUB_USERNAME : defaultUserName;
   
         const reposData = await fetchUserRepos(userName);
-        reposData.sort((a, b) => {
+        reposData.sort((a: { created_at: string | number | Date; }, b: { created_at: string | number | Date; }) => {
           return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
         })
         setReposData(reposData)
@@ -54,7 +63,7 @@ export default function Projects({ dictionary } : ProjectsPageProps) {
               repoName={repo.name}
               repoLink={repo.html_url}
               repoDescription={repo.description || "No description available"}
-              repoLanguages={[repo.language]}
+              repoLanguages={repo.language}
             />
           ))}
         </div>
