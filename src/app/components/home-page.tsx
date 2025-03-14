@@ -13,6 +13,8 @@ export default function HomePage({ dictionary } : HomePageProps) {
   const [os, setOS] = useState<string | null>(null)
 
   useEffect(() => {
+    if (os !== null) return // Skip if OS is already detected
+
     const userAgent = window.navigator.userAgent.toLowerCase()
     if (userAgent.indexOf("firefox") > -1 || userAgent.indexOf("chrome") > -1) setOS("other")
     else if (userAgent.indexOf("applewebkit") > -1 || userAgent.indexOf("safari") > -1) setOS("MacOS")
@@ -20,7 +22,7 @@ export default function HomePage({ dictionary } : HomePageProps) {
     else if (userAgent.indexOf("linux") > -1) setOS("Linux")
     else if (userAgent.indexOf("android") > -1) setOS("Android")
     else setOS("Unknown")
-  }, [])
+  }, [os])
 
   const getVideoUrl = () => {
     switch (os) {
@@ -53,15 +55,15 @@ export default function HomePage({ dictionary } : HomePageProps) {
 
       <div className={styles.videoBackground}>
         {getVideoUrl() === "iOS" && 
-        <video autoPlay loop muted playsInline>
-          <source src="../../assets/synthwave-animation.mov"/>
+        <video key="ios-video" autoPlay loop muted playsInline preload="auto">
+          <source src="../../assets/synthwave-animation.mov" type="video/quicktime"/>
           {dictionary.browserVideoFallback}
         </video>
         }
 
         {getVideoUrl() === "other" && 
-        <video autoPlay loop muted>
-          <source src="../../assets/synthwave-animation.webm"/>
+        <video key="other-video" autoPlay loop muted playsInline>
+          <source src="../../assets/synthwave-animation.webm" type="video/webm"/>
           {dictionary.browserVideoFallback}
         </video>
         }
