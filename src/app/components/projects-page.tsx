@@ -3,6 +3,7 @@
 import ProjectCard from '../components/project-card';
 import { useState, useEffect } from 'react'
 import styles from "../css/page.module.css";
+import { mockedProjects } from "../mocks/mocked-data";
 
 const classNames = require('classnames');
 const defaultUserName = "";
@@ -64,6 +65,17 @@ export default function Projects({ dictionary } : ProjectsPageProps) {
               repoLink={repo.html_url}
               repoDescription={repo.description || "No description available"}
               repoLanguages={repo.language}
+            />
+          ))}
+
+          {/* This is for mocked projects */}
+          {mockedProjects.map((project) => (
+            <ProjectCard
+              key={project.id}
+              repoName={project.name}
+              repoLink={project.html_url}
+              repoDescription={project.description || "No description available"}
+              repoLanguages={project.language}
             />
           ))}
         </div>
