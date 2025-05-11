@@ -47,6 +47,9 @@
   text-align: center;
   font-weight: 400;
   font-family: var(--font-ai-writter);
+}
+
+.coloredFont {
   color: var(--font-color);
 }
 
@@ -132,8 +135,18 @@
 
 .footer {
   width: 100%;
+  height: 20%;
   position: absolute;
   bottom: 0;
+}
+
+.retrowaveScene {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
 }
 
 .projectsContainer {
@@ -212,10 +225,6 @@
   font-size: 14px;
 }
 
-.footer svg {
-  position: absolute;
-  bottom: 0;
-}
 
 .biography {
   text-align: center;
@@ -493,6 +502,10 @@
 @media (max-width: 700px) {
   .content {
     padding: 4rem;
+  }
+
+  .coloredFont {
+    color: var(--font-color-white);
   }
 
   .videoBackground video {
