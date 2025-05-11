@@ -8,7 +8,13 @@ import styles from "../css/page.module.css";
 import { getDictionary } from '../dictionaries';
 import "@fontsource/ia-writer-mono";
 
-export default async function Home({ params: { lang } }: { params: { lang: string } }) {
+export default async function Home(props: { params: Promise<{ lang: string }> }) {
+  const params = await props.params;
+
+  const {
+    lang
+  } = params;
+
   const dict = await getDictionary(lang);
 
   return (
