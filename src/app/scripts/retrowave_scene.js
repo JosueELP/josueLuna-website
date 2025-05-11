@@ -1,5 +1,10 @@
 "use strict";
 
+/////////////////////////////////////////////////////////////////////////////////
+// ORIGINAL RETROWAVE SCENE Created by: moukrea
+// Github link: https://github.com/moukrea/retrowave-scene
+/////////////////////////////////////////////////////////////////////////////////
+
 import * as THREE from "three";
 
 import Stats from 'three/examples/jsm/libs/stats.module.js'; // To get FPS counter
