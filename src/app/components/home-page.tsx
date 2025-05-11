@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
+import { RetrowaveScene } from "../scripts/retrowave_scene.js";
 import styles from "../css/page.module.css";
 
 const classNames = require('classnames');
@@ -11,32 +12,32 @@ interface HomePageProps {
 
 export default function HomePage({ dictionary } : HomePageProps) {
   const [os, setOS] = useState<string | null>(null)
+  const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (os !== null) return // Skip if OS is already detected
-
     const userAgent = window.navigator.userAgent.toLowerCase()
-    if (userAgent.indexOf("firefox") > -1 || userAgent.indexOf("chrome") > -1) setOS("other")
-    else if (userAgent.indexOf("applewebkit") > -1 || userAgent.indexOf("safari") > -1) setOS("MacOS")
-    else if (userAgent.indexOf("iphone") > -1 || userAgent.indexOf("ipad") > -1) setOS("iOS")
-    else if (userAgent.indexOf("linux") > -1) setOS("Linux")
-    else if (userAgent.indexOf("android") > -1) setOS("Android")
-    else setOS("Unknown")
-  }, [os])
 
-  const getVideoUrl = () => {
-    switch (os) {
-      case "iOS":
-      case "MacOS":
-        return "iOS"
-      default:
-        return "other"
+    if (userAgent.indexOf("iphone") > -1 
+        || userAgent.indexOf("ipad") > -1
+        || userAgent.indexOf("ios") > -1 
+        || userAgent.indexOf("android") > -1) { setOS("Mobile") }
+    else setOS("Desktop")
+
+    if (os !== null) {
+      if (!containerRef.current) return
+      // Initialize the retrowave scene
+      const retrowaveScene = new RetrowaveScene("", ("Mobile" === os));
+      retrowaveScene.prepareScene(false, true)
     }
-  }
+
+    console.log("condition: ", ("Mobile" === os));
+    console.log("user agent: ", userAgent);
+    console.log("OS: ", os);
+  }, [os])
 
   return (
     <div className={styles.main} id="homePage">
-      <div className={classNames(styles.fontAiWritter, styles.absolute)}>
+      <div className={classNames(styles.fontAiWritter, styles.absolute, styles.coloredFont)}>
         <h1 className={styles.title}>
           <span className={classNames(styles.italic, styles.small)}>
             {dictionary.preTitle}
@@ -53,21 +54,11 @@ export default function HomePage({ dictionary } : HomePageProps) {
         </div>
       </div>
 
-      <div className={styles.videoBackground}>
-        {getVideoUrl() === "iOS" && 
-        <video key="ios-video" autoPlay loop muted playsInline preload="auto">
-          <source src="../../assets/synthwave-animation.mov" type="video/quicktime"/>
-          {dictionary.browserVideoFallback}
-        </video>
-        }
-
-        {getVideoUrl() === "other" && 
-        <video key="other-video" autoPlay loop muted playsInline>
-          <source src="../../assets/synthwave-animation.webm" type="video/webm"/>
-          {dictionary.browserVideoFallback}
-        </video>
-        }
-      </div>
+      <div
+      ref={containerRef} 
+      id="retrowaveSceneContainer"
+      className={styles.retrowaveScene}
+      ></div>
 
     </div>
   );
