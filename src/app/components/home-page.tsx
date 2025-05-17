@@ -30,9 +30,6 @@ export default function HomePage({ dictionary } : HomePageProps) {
       retrowaveScene.prepareScene(false, true)
     }
 
-    console.log("condition: ", ("Mobile" === os));
-    console.log("user agent: ", userAgent);
-    console.log("OS: ", os);
   }, [os])
 
   return (
@@ -43,7 +40,7 @@ export default function HomePage({ dictionary } : HomePageProps) {
             {dictionary.preTitle}
           </span> 
           <br/> 
-          <span className={styles.bold}>
+          <span className={classNames(styles.bold)}>
             {dictionary.titleName}
           </span>
         </h1>
