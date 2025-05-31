@@ -19,7 +19,7 @@ export default function Footer() {
             <stop offset="0.5" stopColor="black" />
           </linearGradient>
           <mask id="mask">
-            <rect x="0" y="0" width="2000" height="300" fill="url(#gradient)"  />
+            <rect x="0" y="0" width="100%" height="300" fill="url(#gradient)"  />
           </mask>
         </defs>
       </Wave>
