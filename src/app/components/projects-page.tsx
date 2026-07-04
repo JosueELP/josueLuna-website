@@ -3,10 +3,7 @@
 import ProjectCard from '../components/project-card';
 import { useState, useEffect } from 'react'
 import styles from "../css/page.module.css";
-import { mockedProjects } from "../mocks/mocked-data";
-
-const classNames = require('classnames');
-const defaultUrl = "/api/github/repos";
+import classNames from 'classnames';
 
 interface GitHubRepo {
   id: number
@@ -21,76 +18,88 @@ interface ProjectsPageProps {
   dictionary: { [key: string]: string }
 }
 
+const API_URL = "/api/github/repos";
+
+// Mock projects as fallback
+const mockedProjects: GitHubRepo[] = [
+  {
+    id: -1,
+    name: "ArduLogger",
+    html_url: "https://github.com/AfterByte/ArduLogger",
+    description: "A web application made with Flask and Arduino that uses the digital fingerprint sensor AS608 for login and signup",
+    language: "Javascript",
+    created_at: "2021-05-22T22:32:28Z"
+  },
+  {
+    id: -2,
+    name: "BattleShip-ColdWar",
+    html_url: "https://github.com/AfterByte/BattleShip-ColdWar",
+    description: "An Android BattleShip Game inspired on the Cold War for a School Project ",
+    language: "Java",
+    created_at: "2018-10-22T22:32:28Z"
+  }
+];
+
 export default function Projects({ dictionary } : ProjectsPageProps) {
-  const [reposData, setReposData] = useState<GitHubRepo[]>([]);
+  const [allRepos, setAllRepos] = useState<GitHubRepo[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [hasError, setHasError] = useState(false);
+  const [isApiData, setIsApiData] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const reposData = await fetchRepos();
-        reposData.sort((a: { created_at: string | number | Date; }, b: { created_at: string | number | Date; }) => {
+        const response = await fetch(API_URL, {
+          cache: 'no-store',
+        });
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const apiRepos = await response.json();
+        // Sort API repos by creation date (newest first)
+        apiRepos.sort((a: any, b: any) => {
           return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
-        })
-        setReposData(reposData)
+        });
+        
+        // Combine API and mock projects
+        const combinedRepos = [...apiRepos, ...mockedProjects];
+        setAllRepos(combinedRepos);
+        setIsApiData(true);
       } catch (error) {
-        console.error('Error fetching data:', error);
-        setError('Failed to load GitHub repositories. Showing mock projects instead.');
+        console.error('Error fetching API repos:', error);
+        setAllRepos(mockedProjects); // Fallback to mock data only
+        setIsApiData(false);
+        setHasError(true);
       } finally {
         setIsLoading(false);
       }
     };
-  
-    const fetchRepos = async () => {
-      const response = await fetch(defaultUrl, {
-        cache: 'no-store',
-      });
-      
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-  
-      return response.json();
-    };
-  
+
     fetchData();
   }, []);
 
-  const hasMockData = mockedProjects.length > 0;
-  const displayRepos = error ? mockedProjects : reposData;
-  const showMockMessage = error || !reposData.length;
-
   return (
     <div className={classNames(styles.main, styles.fontAiWritter)} id="projects">
-      <div className={classNames(styles.projectsContainer)}>
-        <div className={classNames(styles.spaceDown)}>
-          <h3 className={classNames(styles.spaceDown)}>{dictionary.projectsPageTitle}</h3>
+      <div className={styles.projectsContainer}>
+        <div className={styles.spaceDown}>
+          <h3 className={styles.spaceDown}>{dictionary.projectsPageTitle}</h3>
         </div>
         
-        <div className={classNames(styles.projectsGrid)}>
+        <div className={styles.projectsGrid}>
           {isLoading ? (
-            <div className={classNames(styles.spaceDown)}>Loading projects...</div>
+            <div className={styles.spaceDown}>Loading projects...</div>
           ) : (
-            <>
-              {displayRepos.map((project) => (
-                <ProjectCard
-                  key={hasMockData ? project.id : project.id}
-                  repoName={(hasMockData ? project : project).name}
-                  repoLink={(hasMockData ? project : project).html_url}
-                  repoDescription={(hasMockData ? project : project).description || "No description available"}
-                  repoLanguages={(hasMockData ? project : project).language}
-                />
-              ))}
-              
-              {showMockMessage && (
-                <div className={classNames(styles.spaceDown)}>
-                  <p style={{ color: '#888', fontStyle: 'italic' }}>
-                    Showing mock data. Enable GitHub API in environment variables.
-                  </p>
-                </div>
-              )}
-            </>
+            allRepos.map((project) => (
+              <ProjectCard
+                key={project.id}
+                repoName={project.name}
+                repoLink={project.html_url}
+                repoDescription={project.description || "No description available"}
+                repoLanguages={project.language}
+              />
+            ))
           )}
         </div>
       </div>
