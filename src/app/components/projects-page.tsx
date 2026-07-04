@@ -6,7 +6,7 @@ import styles from "../css/page.module.css";
 import { mockedProjects } from "../mocks/mocked-data";
 
 const classNames = require('classnames');
-const defaultUserName = "";
+const defaultUrl = "/api/github/repos";
 
 interface GitHubRepo {
   id: number
@@ -23,33 +23,43 @@ interface ProjectsPageProps {
 
 export default function Projects({ dictionary } : ProjectsPageProps) {
   const [reposData, setReposData] = useState<GitHubRepo[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const userName = process.env.NEXT_PUBLIC_GITHUB_USERNAME ? process.env.NEXT_PUBLIC_GITHUB_USERNAME : defaultUserName;
-  
-        const reposData = await fetchUserRepos(userName);
+        const reposData = await fetchRepos();
         reposData.sort((a: { created_at: string | number | Date; }, b: { created_at: string | number | Date; }) => {
           return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
         })
         setReposData(reposData)
       } catch (error) {
         console.error('Error fetching data:', error);
+        setError('Failed to load GitHub repositories. Showing mock projects instead.');
+      } finally {
+        setIsLoading(false);
       }
     };
   
-    const fetchUserRepos = async (username : String) => {
-      const response = await fetch(`https://api.github.com/users/${username}/repos`, {
-        headers: {
-          Authorization: `Bearer ${process.env.NEXT_PUBLIC_GITHUB_TOKEN}`,
-        },
+    const fetchRepos = async () => {
+      const response = await fetch(defaultUrl, {
+        cache: 'no-store',
       });
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+  
       return response.json();
     };
   
     fetchData();
-  }, [process.env.NEXT_PUBLIC_GITHUB_USERNAME, process.env.NEXT_PUBLIC_GITHUB_TOKEN]);
+  }, []);
+
+  const hasMockData = mockedProjects.length > 0;
+  const displayRepos = error ? mockedProjects : reposData;
+  const showMockMessage = error || !reposData.length;
 
   return (
     <div className={classNames(styles.main, styles.fontAiWritter)} id="projects">
@@ -57,27 +67,31 @@ export default function Projects({ dictionary } : ProjectsPageProps) {
         <div className={classNames(styles.spaceDown)}>
           <h3 className={classNames(styles.spaceDown)}>{dictionary.projectsPageTitle}</h3>
         </div>
+        
         <div className={classNames(styles.projectsGrid)}>
-          {reposData.map((repo) => (
-            <ProjectCard
-              key={repo.id}
-              repoName={repo.name}
-              repoLink={repo.html_url}
-              repoDescription={repo.description || "No description available"}
-              repoLanguages={repo.language}
-            />
-          ))}
-
-          {/* This is for mocked projects */}
-          {mockedProjects.map((project) => (
-            <ProjectCard
-              key={project.id}
-              repoName={project.name}
-              repoLink={project.html_url}
-              repoDescription={project.description || "No description available"}
-              repoLanguages={project.language}
-            />
-          ))}
+          {isLoading ? (
+            <div className={classNames(styles.spaceDown)}>Loading projects...</div>
+          ) : (
+            <>
+              {displayRepos.map((project) => (
+                <ProjectCard
+                  key={hasMockData ? project.id : project.id}
+                  repoName={(hasMockData ? project : project).name}
+                  repoLink={(hasMockData ? project : project).html_url}
+                  repoDescription={(hasMockData ? project : project).description || "No description available"}
+                  repoLanguages={(hasMockData ? project : project).language}
+                />
+              ))}
+              
+              {showMockMessage && (
+                <div className={classNames(styles.spaceDown)}>
+                  <p style={{ color: '#888', fontStyle: 'italic' }}>
+                    Showing mock data. Enable GitHub API in environment variables.
+                  </p>
+                </div>
+              )}
+            </>
+          )}
         </div>
       </div>
     </div>
