@@ -1,44 +1,54 @@
 {
-  "preTitle": "Hi! I'm",
-  "titleName": "Josue Luna",
-  "afterNameValues": ["Developer", "Computer Systems Engineer", "Geek"],
-  "browserVideoFallback": "Your browser is not compatible with video",
-  "navBarHome": "Home",
-  "navBarAbout": "About me",
-  "navBarProjects": "Projects",
-  "navBarContact": "Contact me",
-  "aboutMePageQuestion": "Who am I?",
-  "aboutMePageDescriptionP1": "I'm a ",
-  "aboutMePageDescriptionP2": "Computer Systems Enginner.",
-  "aboutMePageDescriptionP3": "Always passionated by web development and software development in general.",
-  "aboutMePageDescriptionP4": "I like videogames, synthwave music & all the computer/techonology stuff that",
-  "aboutMePageDescriptionP5": "most of us in this bussines like :P",
-  "aboutMePageBiographyP1": "I currently consider myself to be in a mid level of Software Developer,",
-  "aboutMePageBiographyP2": "most focused in backend side, but also worked in frontend tasks. At the end, my main goal is to",
-  "aboutMePageBiographyP3": "become a full stack dev!",
-  "aboutMePageBiographyP4": "If there is something that school teached me well, It's the ability to learn",
-  "aboutMePageBiographyP5": "whatever it takes in order to do the best possible job",
-  "aboutMePageBiographyP6": "and deliver the best possible code/product.",
-  "aboutMePageBiographyP7": "That's why, if I don't know a technology, you can be sure",
-  "aboutMePageBiographyP8": "that I can learn it if the job requires it.",
-  "aboutMePageTecnologies": "Techonologies that I have worked with",
-  "aboutMePageTimeline": "A little view of my experience",
-  "projectsPageTitle": "Some of my personal projects",
-  "contactMePageTitle": "Let's stay connected!",
-  "contactMePageDescription": "If you want to stay in touch with me, please make use of my social media/email",
-  "contactMeDownloadButton": "Download my CV!",
-  "contactMeDownloadArrow": "<---",
-  "esLanguageLabel": "ES",
-  "enLanguageLabel": "EN",
-  "esLanguage": "Spanish",
-  "enLanguage": "English",
-  "timeLineDataYear1": "2021 - Present",
-  "timeLineDataTitle1": "TechMahindra Mexico Cloud Services",
-  "timeLineDataDescription1": "Backend developer\nSpring boot, Java\nReactJS, NodeJS\nUnit Testing\nBug hunter/fixer",
-  "timeLineDataYear2": "2022",
-  "timeLineDataTitle2": "Graduated from School",
-  "timeLineDataDescription2": "Completed formal education and received degree",
-  "timeLineDataYear3": "2017",
-  "timeLineDataTitle3": "Started Engineering!",
-  "timeLineDataDescription3": "Began journey in software engineering"
+  "nav": {
+    "home": "Home",
+    "about": "About me",
+    "projects": "Projects",
+    "contact": "Contact me"
+  },
+  "home": {
+    "preTitle": "Hi! I'm",
+    "titleName": "Josue Luna",
+    "afterNameValues": ["Developer", "Computer Systems Engineer", "Geek"],
+    "browserVideoFallback": "Your browser is not compatible with video"
+  },
+  "aboutMe": {
+    "question": "Who am I?",
+    "descriptionIntro": "I'm a",
+    "descriptionRole": "Computer Systems Engineer.",
+    "description": "Always passionated by web development and software development in general. I like videogames, synthwave music & all the computer/technology stuff that most of us in this business like :P",
+    "biographyIntro": "I currently consider myself to be in a mid level of Software Developer, most focused in backend side, but also worked in frontend tasks. At the end, my main goal is to become a full stack dev!",
+    "biographyLearning": "If there is something that school teached me well, it's the ability to learn whatever it takes in order to do the best possible job and deliver the best possible code/product. That's why, if I don't know a technology, you can be sure that I can learn it if the job requires it.",
+    "technologies": "Techonologies that I have worked with",
+    "timelineTitle": "A little view of my experience"
+  },
+  "timeline": [
+    {
+      "year": "2021 - Present",
+      "title": "TechMahindra Mexico Cloud Services",
+      "description": "Backend developer\nSpring boot, Java\nReactJS, NodeJS\nUnit Testing\nBug hunter/fixer"
+    },
+    {
+      "year": "2022",
+      "title": "Graduated from School",
+      "description": "Completed formal education and received degree"
+    },
+    {
+      "year": "2017",
+      "title": "Started Engineering!",
+      "description": "Began journey in software engineering"
+    }
+  ],
+  "projects": {
+    "title": "Some of my personal projects",
+    "loading": "Loading projects..."
+  },
+  "contactMe": {
+    "title": "Let's stay connected!",
+    "description": "If you want to stay in touch with me, please make use of my social media/email",
+    "downloadButton": "Download my CV!"
+  },
+  "language": {
+    "es": { "label": "ES", "name": "Spanish" },
+    "en": { "label": "EN", "name": "English" }
+  }
 }

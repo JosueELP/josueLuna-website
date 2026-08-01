@@ -1,19 +1,20 @@
 import Footer from '../components/footer';
 import styles from "../css/page.module.css";
 import DownloadButton from './cv-download-button'
+import { Dictionary } from '../dictionaries';
 
 const classNames = require('classnames');
 
 interface ContactMeProps {
-  dictionary: { [key: string]: string }
+  dictionary: Dictionary
 }
 
 export default function ContactMe({ dictionary } : ContactMeProps) {
   return (
     <div className={classNames(styles.main, styles.fontAiWritter)} id="contactMe">
       <div className={classNames(styles.textCenter, styles.spaceDown)}>
-        <h3 className={classNames(styles.spaceDown)}>{dictionary.contactMePageTitle}</h3>
-        <p className={classNames(styles.contactInfo)}>{dictionary.contactMePageDescription}</p>
+        <h3 className={classNames(styles.spaceDown)}>{dictionary.contactMe.title}</h3>
+        <p className={classNames(styles.contactInfo)}>{dictionary.contactMe.description}</p>
       </div>
       <div className={classNames(styles.socialLogos)}>
         <a href="https://github.com/JosueELP" target="_blank" aria-label="Link to the github user profile of Josue Luna">

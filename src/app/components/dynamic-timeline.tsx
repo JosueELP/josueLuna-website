@@ -2,39 +2,14 @@
 
 import React, { useState } from 'react'
 import '../css/timeline.css'
+import { Dictionary, TimelineEntry } from '../dictionaries';
 
-interface TimelineItem {
+interface TimelineItem extends TimelineEntry {
   id: number
-  year: string
-  title: string
-  description: string
 }
 
-const constructTimeLineData = (dictionary : { [key: string]: string }) => {
-  const initialTimelineData: TimelineItem[] = [
-    {
-      id: 1,
-      year: dictionary.timeLineDataYear1,
-      title: dictionary.timeLineDataTitle1,
-      description: dictionary.timeLineDataDescription1
-    },
-    {
-      id: 2,
-      year: dictionary.timeLineDataYear2,
-      title: dictionary.timeLineDataTitle2,
-      description: dictionary.timeLineDataDescription2
-    },
-    {
-      id: 3,
-      year: dictionary.timeLineDataYear3,
-      title: dictionary.timeLineDataTitle3,
-      description: dictionary.timeLineDataDescription3
-    }
-  ]
-
-  return initialTimelineData;
-  
-};
+const constructTimeLineData = (timeline: TimelineEntry[]): TimelineItem[] =>
+  timeline.map((entry, index) => ({ id: index + 1, ...entry }));
 
 const ChevronIcon: React.FC<{ direction: 'up' | 'down'; color: string }> = ({ direction, color }) => (
   <svg
@@ -57,11 +32,11 @@ const ChevronIcon: React.FC<{ direction: 'up' | 'down'; color: string }> = ({ di
 )
 
 interface TimeLineProps {
-  dictionary: { [key: string]: string }
+  dictionary: Dictionary
 }
 
 export default function Timeline({ dictionary } : TimeLineProps) {
-  const [timelineData, setTimelineData] = useState(constructTimeLineData(dictionary))
+  const [timelineData, setTimelineData] = useState(constructTimeLineData(dictionary.timeline))
   const [expandedId, setExpandedId] = useState<number | null>(1)
   const [animatingId, setAnimatingId] = useState<number | null>(null)
 

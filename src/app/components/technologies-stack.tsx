@@ -5,11 +5,7 @@ import { useState } from 'react'
 
 const classNames = require('classnames');
 
-interface TechnologiesProps {
-  dictionary: { [key: string]: string }
-}
-
-export default function Technologies({ dictionary } : TechnologiesProps) {
+export default function Technologies() {
   const [isHovered, setIsHovered] = useState(false);
 
   return (

@@ -1,14 +1,52 @@
 import 'server-only'
 
-// Define the valid locales as a union type
 export type Locale = 'en-US' | 'es-US' | 'en-MX' | 'es-MX';
 
-// Define the dictionary type
-type Dictionary = {
-  [key: string]: any;
+export interface TimelineEntry {
+  year: string;
+  title: string;
+  description: string;
 }
 
-// Type the dictionaries object with the Locale keys
+export interface Dictionary {
+  nav: {
+    home: string;
+    about: string;
+    projects: string;
+    contact: string;
+  };
+  home: {
+    preTitle: string;
+    titleName: string;
+    afterNameValues: string[];
+    browserVideoFallback: string;
+  };
+  aboutMe: {
+    question: string;
+    descriptionIntro: string;
+    descriptionRole: string;
+    description: string;
+    biographyIntro: string;
+    biographyLearning: string;
+    technologies: string;
+    timelineTitle: string;
+  };
+  timeline: TimelineEntry[];
+  projects: {
+    title: string;
+    loading: string;
+  };
+  contactMe: {
+    title: string;
+    description: string;
+    downloadButton: string;
+  };
+  language: {
+    es: { label: string; name: string };
+    en: { label: string; name: string };
+  };
+}
+
 const dictionaries: Record<Locale, () => Promise<Dictionary>> = {
   'en-US': () => import('./dictionaries/en.json').then((module) => module.default),
   'es-US': () => import('./dictionaries/es.json').then((module) => module.default),
@@ -16,14 +54,13 @@ const dictionaries: Record<Locale, () => Promise<Dictionary>> = {
   'es-MX': () => import('./dictionaries/es.json').then((module) => module.default),
 }
 
-// Update the getDictionary function to handle invalid locales
+const DEFAULT_LOCALE: Locale = 'en-US';
+
 export const getDictionary = async (locale: string): Promise<Dictionary> => {
-  // Check if the locale exists in our dictionaries
   if (locale in dictionaries) {
     return dictionaries[locale as Locale]();
   }
-  
-  // Fallback to en-US if the locale doesn't exist
-  console.warn(`Locale '${locale}' not found, falling back to 'en-US'`);
-  return dictionaries['en-US']();
+
+  console.warn(`Locale '${locale}' not found, falling back to '${DEFAULT_LOCALE}'`);
+  return dictionaries[DEFAULT_LOCALE]();
 }
