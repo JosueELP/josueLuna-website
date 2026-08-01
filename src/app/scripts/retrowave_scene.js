@@ -20,6 +20,35 @@ import { GlitchPass } from "three/examples/jsm/postprocessing/GlitchPass.js";
 import { FilmPass } from "three/examples/jsm/postprocessing/FilmPass.js";
 
 /////////////////////////////////////////////////////////////////////////////////
+// THEME PALETTES
+/////////////////////////////////////////////////////////////////////////////////
+
+// Color palette driving the whole scene. "floor" is reused as the grid's
+// mix-in background (see createGridMaterial) so the grid lines read as a
+// subtle texture on the floor itself, and a contrasting overlay on the
+// sidewalk - mirrors the original hardcoded light-theme behavior.
+var THEME_PALETTES = {
+	light: {
+		sceneBackground: 0xc9a298,
+		floor: 0xfff0e5,
+		road: 0x000000,
+		roadLines: 0xffffff,
+		sidewalk: 0x0078a8,
+		palmTree: 0x000000,
+		bloomStrength: 0.4,
+	},
+	dark: {
+		sceneBackground: 0x1a0b2e,
+		floor: 0x2a1245,
+		road: 0x0a0512,
+		roadLines: 0x2be8ff,
+		sidewalk: 0xff2fa0,
+		palmTree: 0x7d3ca8,
+		bloomStrength: 0.9,
+	},
+};
+
+/////////////////////////////////////////////////////////////////////////////////
 // RETROWAVE SCENE
 /////////////////////////////////////////////////////////////////////////////////
 
@@ -27,7 +56,11 @@ import { FilmPass } from "three/examples/jsm/postprocessing/FilmPass.js";
  * RetrowaveScene class
  * On call, sets all minimum requirement for the scene to work
  */
-export var RetrowaveScene = function (scenePath, isMobile) {
+export var RetrowaveScene = function (scenePath, isMobile, isDark) {
+	// THEME
+	this.isDark = !!isDark;
+	this.palette = THEME_PALETTES[this.isDark ? 'dark' : 'light'];
+
 	// DEFAULT ANIMATION SPEED
 	// This can be changed anytime with setAnimationSpeed method (changing directly this.animationSpeed won't have any effect as the whole animation relies on shaders uniforms)
 	this.animationSpeed = 12;
@@ -91,7 +124,7 @@ export var RetrowaveScene = function (scenePath, isMobile) {
 
 	// SCENE
 	this.scene = new THREE.Scene();
-	this.scene.background = new THREE.Color(0xc9a298);
+	this.scene.background = new THREE.Color(this.palette.sceneBackground);
 	// this.scene.background = null;
 
 	// CAMERA
@@ -224,7 +257,7 @@ RetrowaveScene.prototype.setPostProcessing = function () {
 		0.8
 	); // Settings here appear to have no effect
 
-  this.bloomPass.strength = 0.4; // Reduced from 1.5
+  this.bloomPass.strength = this.palette.bloomStrength; // Dark theme gets a stronger neon glow
   this.bloomPass.threshold = 0.2; // Increased from 0
   this.bloomPass.radius = 0.5; // Reduced from 0.8
 
@@ -261,11 +294,12 @@ RetrowaveScene.prototype.addFloor = function () {
   floorGeometry.translate(0, 110, 0);
   floorGeometry.rotateX(-Math.PI * 0.5);
   let floorMaterial = new THREE.MeshBasicMaterial({
-    color: 0xfff0e5,
+    color: this.palette.floor,
   });
-  this.createGridMaterial(floorMaterial);
+  this.createGridMaterial(floorMaterial, this.palette.floor, 'floorShader');
 
   // Add floor to scene
+  this.floorMaterial = floorMaterial;
   this.grid = new THREE.Mesh(floorGeometry, floorMaterial);
   this.scene.add(this.grid);
 };
@@ -282,9 +316,9 @@ RetrowaveScene.prototype.addRoad = function () {
 	roadGeometry.translate(0, 110, 0.1);
 	roadGeometry.rotateX(-Math.PI * 0.5);
 
-	// Change the road material color to black
+	// Road color follows the active theme palette
 	let roadMaterial = new THREE.MeshBasicMaterial({
-		color: 0x000000, // Changed from 0x03353b
+		color: this.palette.road,
 		transparent: true,
 		opacity: 0.7,
 	});
@@ -342,7 +376,7 @@ RetrowaveScene.prototype.addRoadLines = function () {
 
 	// Material
 	let roadLineMaterial = new THREE.MeshBasicMaterial({
-		color: 0xffffff,
+		color: this.palette.roadLines,
 		transparent: true,
 		opacity: 0.3,
 	});
@@ -391,14 +425,15 @@ RetrowaveScene.prototype.addSidewalk = function () {
 	); // Merge all geometries within sidewalkConception array
 
 	let sidewalkMaterial = new THREE.MeshBasicMaterial({
-    color: 0x0078a8, // Darker blue for contrast
+    color: this.palette.sidewalk,
     side: THREE.DoubleSide,
     transparent: true,
     opacity: 0.9, // Increased opacity for better visibility
   });
-  this.createGridMaterial(sidewalkMaterial); // Call function that sets the moving grid shader (common shader between sidewalk and floor, with different color)
+  this.createGridMaterial(sidewalkMaterial, this.palette.floor, 'sidewalkShader'); // Call function that sets the moving grid shader (common shader between sidewalk and floor, with different color)
 
 	// Add sidewalk to the scene
+	this.sidewalkMaterial = sidewalkMaterial;
 	this.sidewalk = new THREE.Mesh(sidewalkGeometry, sidewalkMaterial);
 	this.scene.add(this.sidewalk);
 };
@@ -462,9 +497,9 @@ RetrowaveScene.prototype.addPalmtrees = function () {
 		new THREE.InstancedBufferAttribute(new Float32Array(palmTreePosition), 3)
 	);
 
-	// Change the palm tree color to black
+	// Palm tree silhouette color follows the active theme palette
   var palmTreeMaterial = new THREE.MeshBasicMaterial({
-    color: 0x000000, // Darker green for contrast 0x004010
+    color: this.palette.palmTree,
     side: THREE.DoubleSide,
     wireframe: true,
   });
@@ -476,7 +511,9 @@ RetrowaveScene.prototype.addPalmtrees = function () {
   };
 
 	// Add palm trees to the scene
+	this.palmTreeMaterial = palmTreeMaterial;
 	var palmTrees = new THREE.Mesh(palmTreeInstance, palmTreeMaterial);
+	this.palmTrees = palmTrees;
 	this.scene.add(palmTrees);
 };
 
@@ -651,13 +688,22 @@ RetrowaveScene.prototype.addSvgGraphics = async function () {
 // SHADER TOOLBOX
 /////////////////////////////////////////////////////////////////////////////////
 
-RetrowaveScene.prototype.createGridMaterial = function (materialVar) {
+/**
+ * @param {THREE.Material} materialVar The material to attach the moving grid shader to
+ * @param {number} backgroundColorHex Hex color mixed in between grid lines
+ * @param {string} [storeAs] If set, stores the compiled shader on `this[storeAs]` so its
+ *   `backgroundColor` uniform can be updated live later (see setTheme)
+ */
+RetrowaveScene.prototype.createGridMaterial = function (materialVar, backgroundColorHex, storeAs) {
 	materialVar.onBeforeCompile = (shader) => {
 		shader.uniforms.speed = {
 			value: this.animationSpeed,
 		};
 		shader.uniforms.time = {
 			value: 0,
+		};
+		shader.uniforms.backgroundColor = {
+			value: new THREE.Color(backgroundColorHex),
 		};
 		shader.vertexShader =
 			`
@@ -680,6 +726,7 @@ RetrowaveScene.prototype.createGridMaterial = function (materialVar) {
 
       uniform float speed;
 			uniform float time;
+			uniform vec3 backgroundColor;
 			varying vec3 vPos;
 
 			float line(vec3 position, float width, vec3 step){
@@ -698,19 +745,64 @@ RetrowaveScene.prototype.createGridMaterial = function (materialVar) {
 				`gl_FragColor = vec4( outgoingLight, diffuseColor.a );`,
 				`
 					float l = line(vPos, 1.0, vec3(2.0)); // grid line width
-					vec3 backgroundColor = vec3(1.0, 0.941, 0.898); // #fff0e5 in RGB
-					
+
 					// Use the material's color for the grid lines, but make them darker for contrast
 					vec3 gridColor = outgoingLight * 0.6; // Darken the grid color
-					
+
 					// Mix the grid color with the background based on the line value
 					vec3 c = mix(gridColor, backgroundColor, 1.0 - l);
-					
+
 					gl_FragColor = vec4(c, diffuseColor.a);
 				`
 			);
 		this.materialShaders.push(shader);
+		if (storeAs) {
+			this[storeAs] = shader;
+		}
 	};
+};
+
+/////////////////////////////////////////////////////////////////////////////////
+// THEME SWITCHING
+/////////////////////////////////////////////////////////////////////////////////
+
+/**
+ * Re-colors the already-running scene for the given theme, without rebuilding
+ * any geometry or restarting the animation.
+ *
+ * @param {boolean} isDark Whether the dark theme palette should be applied
+ */
+RetrowaveScene.prototype.setTheme = function (isDark) {
+	this.isDark = !!isDark;
+	this.palette = THEME_PALETTES[this.isDark ? 'dark' : 'light'];
+
+	if (this.scene) {
+		this.scene.background.set(this.palette.sceneBackground);
+	}
+	if (this.floorMaterial) {
+		this.floorMaterial.color.set(this.palette.floor);
+	}
+	if (this.floorShader) {
+		this.floorShader.uniforms.backgroundColor.value.set(this.palette.floor);
+	}
+	if (this.road) {
+		this.road.material.color.set(this.palette.road);
+	}
+	if (this.roadLines) {
+		this.roadLines.material.color.set(this.palette.roadLines);
+	}
+	if (this.sidewalkMaterial) {
+		this.sidewalkMaterial.color.set(this.palette.sidewalk);
+	}
+	if (this.sidewalkShader) {
+		this.sidewalkShader.uniforms.backgroundColor.value.set(this.palette.floor);
+	}
+	if (this.palmTreeMaterial) {
+		this.palmTreeMaterial.color.set(this.palette.palmTree);
+	}
+	if (this.bloomPass) {
+		this.bloomPass.strength = this.palette.bloomStrength;
+	}
 };
 
 /**

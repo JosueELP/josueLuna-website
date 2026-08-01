@@ -3,6 +3,7 @@
 import { useRouter } from 'next/navigation'
 import { usePathname } from 'next/navigation'
 import styles from "../css/page.module.css";
+import ThemeToggle from './theme-toggle';
 
 const classNames = require('classnames');
 
@@ -19,6 +20,7 @@ export default function LanguageSwitcher() {
     <div className={classNames(styles.switcher)}>
       <button onClick={() => switchLanguage('en-US')}>EN</button>
       <button onClick={() => switchLanguage('es-MX')}>ES</button>
+      <ThemeToggle/>
     </div>
   )
 }

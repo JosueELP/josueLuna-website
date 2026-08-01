@@ -41,11 +41,11 @@
 }
 
 .activeDot {
-  background-color: #a4958b;
+  background-color: var(--accent-color);
 }
 
 .inactiveDot {
-  background-color: #d8cdc5;
+  background-color: var(--accent-color-muted);
 }
 
 .animatingDot {
@@ -58,7 +58,7 @@
   top: 1.5rem;
   bottom: -2rem;
   width: 0.125rem;
-  background-color: #a4958b;
+  background-color: var(--accent-color);
 }
 
 .yearContainer {
