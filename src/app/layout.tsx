@@ -11,15 +11,14 @@ export const metadata: Metadata = {
   description: "Josue Luna personal website",
 };
 
-// Applies the persisted (or system) theme to <html> before first paint, so
-// there is no light-theme flash for returning dark-theme visitors.
+// Applies the persisted theme to <html> before first paint, so there is no
+// theme flash for returning visitors. Light is always the default until the
+// visitor explicitly toggles - system color-scheme preference is ignored.
 const THEME_INIT_SCRIPT = `
 (function () {
   try {
     var stored = localStorage.getItem('theme');
-    var theme = stored === 'dark' || stored === 'light'
-      ? stored
-      : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    var theme = stored === 'dark' || stored === 'light' ? stored : 'light';
     document.documentElement.setAttribute('data-theme', theme);
   } catch (e) {}
 })();
