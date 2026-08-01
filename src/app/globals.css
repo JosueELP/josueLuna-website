@@ -10,7 +10,14 @@
   --background-color-hover: #d6c8bb;
   --font-color: #000000;
   --font-color-white: #fff0e5;
-  
+
+  --accent-color: #a4958b;
+  --accent-color-hover: #8d8078;
+  --accent-color-soft: #b9a89d;
+  --accent-color-muted: #d8cdc5;
+  --shadow-color: rgba(163, 149, 137, 0.57);
+  --card-text-color: #333333;
+
   --java-color: #ffaeae;
   --typescript-color: #8ab5e7;
   --javascript-color: #ebdc6c;
@@ -18,6 +25,24 @@
   --pug-color: #c9a298;
   --ruby-color: #fc8585;
   --css-color: #b6a6f5;
+
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  --background-color: #150821;
+  --background-color-hover: #2b1240;
+  --font-color: #f3e8ff;
+  --font-color-white: #f3e8ff;
+
+  --accent-color: #ff4fc3;
+  --accent-color-hover: #ff7fd6;
+  --accent-color-soft: #7c2b74;
+  --accent-color-muted: #4a2a5c;
+  --shadow-color: rgba(255, 79, 195, 0.35);
+  --card-text-color: #f3e8ff;
+
+  color-scheme: dark;
 }
 
 * {
@@ -36,15 +61,10 @@ body {
   background-color: var(--background-color);
   width: 100vw;
   height: 100vh;
+  transition: background-color 0.3s ease;
 }
 
 a {
   color: inherit;
   text-decoration: none;
-}
-
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
 }
