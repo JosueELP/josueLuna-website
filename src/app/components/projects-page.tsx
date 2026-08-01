@@ -4,6 +4,7 @@ import ProjectCard from '../components/project-card';
 import { useState, useEffect } from 'react'
 import styles from "../css/page.module.css";
 import classNames from 'classnames';
+import { Dictionary } from '../dictionaries';
 
 interface GitHubRepo {
   id: number
@@ -15,7 +16,7 @@ interface GitHubRepo {
 }
 
 interface ProjectsPageProps {
-  dictionary: { [key: string]: string }
+  dictionary: Dictionary
 }
 
 const API_URL = "/api/github/repos";
@@ -84,12 +85,12 @@ export default function Projects({ dictionary } : ProjectsPageProps) {
     <div className={classNames(styles.main, styles.fontAiWritter)} id="projects">
       <div className={styles.projectsContainer}>
         <div className={styles.spaceDown}>
-          <h3 className={styles.spaceDown}>{dictionary.projectsPageTitle}</h3>
+          <h3 className={styles.spaceDown}>{dictionary.projects.title}</h3>
         </div>
-        
+
         <div className={styles.projectsGrid}>
           {isLoading ? (
-            <div className={styles.spaceDown}>Loading projects...</div>
+            <div className={styles.spaceDown}>{dictionary.projects.loading}</div>
           ) : (
             allRepos.map((project) => (
               <ProjectCard

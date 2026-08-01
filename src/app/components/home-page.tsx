@@ -3,11 +3,12 @@
 import { useState, useEffect, useRef } from 'react'
 import { RetrowaveScene } from "../scripts/retrowave_scene.js";
 import styles from "../css/page.module.css";
+import { Dictionary } from '../dictionaries';
 
 const classNames = require('classnames');
 
 interface HomePageProps {
-  dictionary: { [key: string]: string }
+  dictionary: Dictionary
 }
 
 export default function HomePage({ dictionary } : HomePageProps) {
@@ -37,17 +38,17 @@ export default function HomePage({ dictionary } : HomePageProps) {
       <div className={classNames(styles.fontAiWritter, styles.absolute, styles.coloredFont)}>
         <h1 className={styles.title}>
           <span className={classNames(styles.italic, styles.small)}>
-            {dictionary.preTitle}
-          </span> 
-          <br/> 
+            {dictionary.home.preTitle}
+          </span>
+          <br/>
           <span className={classNames(styles.bold)}>
-            {dictionary.titleName}
+            {dictionary.home.titleName}
           </span>
         </h1>
         <div className={styles.afterName}>
-          <h3>{dictionary.afterNameValues[0]}</h3>
-          <h3>{dictionary.afterNameValues[1]}</h3>
-          <h3>{dictionary.afterNameValues[2]}</h3>
+          {dictionary.home.afterNameValues.map((value) => (
+            <h3 key={value}>{value}</h3>
+          ))}
         </div>
       </div>
 
