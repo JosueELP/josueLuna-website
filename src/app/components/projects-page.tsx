@@ -11,7 +11,7 @@ interface GitHubRepo {
   name: string
   html_url: string
   description: string | null
-  language: string
+  language: string | null
   created_at: string
 }
 
@@ -98,7 +98,7 @@ export default function Projects({ dictionary } : ProjectsPageProps) {
                 repoName={project.name}
                 repoLink={project.html_url}
                 repoDescription={project.description || "No description available"}
-                repoLanguages={project.language}
+                repoLanguages={project.language || "Unknown"}
               />
             ))
           )}
