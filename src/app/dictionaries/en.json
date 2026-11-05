@@ -18,24 +18,59 @@
     "description": "Always passionated by web development and software development in general. I like videogames, synthwave music & all the computer/technology stuff that most of us in this business like :P",
     "biographyIntro": "I currently consider myself to be in a mid level of Software Developer, most focused in backend side, but also worked in frontend tasks. At the end, my main goal is to become a full stack dev!",
     "biographyLearning": "If there is something that school teached me well, it's the ability to learn whatever it takes in order to do the best possible job and deliver the best possible code/product. That's why, if I don't know a technology, you can be sure that I can learn it if the job requires it.",
-    "technologies": "Techonologies that I have worked with",
+    "technologies": "Technologies that I have worked with",
+    "technologyGroups": {
+      "languages": "Languages",
+      "frameworks": "Frameworks & libraries",
+      "data": "Data & messaging",
+      "cloud": "Cloud, DevOps & VCS",
+      "monitoring": "Monitoring & security",
+      "tools": "Tools"
+    },
     "timelineTitle": "A little view of my experience"
   },
   "timeline": [
     {
-      "year": "2021 - Present",
-      "title": "TechMahindra Mexico Cloud Services",
-      "description": "Backend developer\nSpring boot, Java\nReactJS, NodeJS\nUnit Testing\nBug hunter/fixer"
+      "year": "Jan 2022 - Oct 2026",
+      "title": "Software Engineer - Backend",
+      "subtitle": "TechMahindra · Client: Scotiabank Canada",
+      "highlights": [
+        "Designed a Redis-based payment status polling mechanism, cutting database reads by ~20%",
+        "Built AI-assisted Node.js/Express tools that automated AppSec requests and ServiceNow tickets (+33% productivity)",
+        "Helped launch wire payments for Mexico and the US, plus a user management system",
+        "Made the Wire Payment File Upload asynchronous, removing 1+ minute timeouts",
+        "Diagnosed critical production issues across Kafka, Redis and GCP",
+        "Upgraded microservices and shared Java libraries to newer Spring Boot and JDK versions",
+        "Supported 10+ production releases and onboarded new developers"
+      ],
+      "tags": ["Java", "Spring Boot", "Redis", "Kafka", "GCP", "Node.js", "React"]
+    },
+    {
+      "year": "Sep 2021 - Jan 2022",
+      "title": "Software Developer Intern",
+      "subtitle": "TechMahindra · Internal project",
+      "highlights": [
+        "Built REST APIs and backend logic with Java and Spring Boot microservices to automate employee CV creation",
+        "Containerized the services with Docker and set up a GitLab CI pipeline"
+      ],
+      "tags": ["Java", "Spring Boot", "MySQL", "Docker", "GitLab CI"]
     },
     {
       "year": "2022",
-      "title": "Graduated from School",
-      "description": "Completed formal education and received degree"
+      "title": "Graduated!",
+      "subtitle": "B.S. in Computer Systems Engineering",
+      "highlights": [
+        "Highest grade average in my graduating class (97.77/100)",
+        "Competed in Coding Cup TecNM (2019, 2020) and Google Hash Code (2019)"
+      ]
     },
     {
       "year": "2017",
       "title": "Started Engineering!",
-      "description": "Began journey in software engineering"
+      "subtitle": "Technological Institute of Ciudad Guzmán",
+      "highlights": [
+        "Began my journey in software engineering"
+      ]
     }
   ],
   "projects": {

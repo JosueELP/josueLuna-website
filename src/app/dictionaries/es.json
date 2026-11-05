@@ -18,24 +18,59 @@
     "description": "Siempre apasionado por el desarrollo web y el desarrollo de software en general. Me gustan los videojuegos, la música synthwave y todo lo relacionado con tecnología, en resumen me gusta lo que a la mayoría de nosotros en este negocio nos gusta :P",
     "biographyIntro": "Actualmente me considero estar en un nivel medio de Desarrollador de Software, aunque ultimamente he trabajado del lado del backend, también he trabajado en tareas frontend. Al final, mi objetivo principal es convertirme en un full stack dev!",
     "biographyLearning": "Si hay algo que la escuela me enseñó bien es la capacidad de aprender lo que sea necesario para hacer el mejor trabajo posible y entregar el mejor código/producto posible. Por eso, si no conozco una tecnología, puedes estar seguro que puedo aprenderlo si el trabajo lo requiere.",
-    "technologies": "Tecnologias con las que he trabajado",
+    "technologies": "Tecnologías con las que he trabajado",
+    "technologyGroups": {
+      "languages": "Lenguajes",
+      "frameworks": "Frameworks y librerías",
+      "data": "Datos y mensajería",
+      "cloud": "Nube, DevOps y control de versiones",
+      "monitoring": "Monitoreo y seguridad",
+      "tools": "Herramientas"
+    },
     "timelineTitle": "Un pequeño vistazo de mi experiencia"
   },
   "timeline": [
     {
-      "year": "2021 - Actualidad",
-      "title": "TechMahindra Mexico Cloud Services",
-      "description": "Desarrollador Backend\nSpring boot, Java\nReactJS, NodeJS\nUnit Testing\nResolver bugs"
+      "year": "Ene 2022 - Oct 2026",
+      "title": "Ingeniero de Software - Backend",
+      "subtitle": "TechMahindra · Cliente: Scotiabank Canada",
+      "highlights": [
+        "Diseñé un mecanismo de consulta de estatus de pagos basado en Redis, reduciendo las lecturas a base de datos ~20%",
+        "Construí herramientas con IA en Node.js/Express que automatizaron solicitudes de AppSec y tickets de ServiceNow (+33% de productividad)",
+        "Participé en el lanzamiento de pagos wire para México y EUA, y en un sistema de gestión de usuarios",
+        "Hice asíncrona la carga de archivos de pagos wire, eliminando timeouts de más de 1 minuto",
+        "Diagnostiqué incidentes críticos en producción en Kafka, Redis y GCP",
+        "Actualicé microservicios y librerías Java compartidas a versiones más recientes de Spring Boot y JDK",
+        "Apoyé 10+ releases a producción e hice onboarding de nuevos desarrolladores"
+      ],
+      "tags": ["Java", "Spring Boot", "Redis", "Kafka", "GCP", "Node.js", "React"]
+    },
+    {
+      "year": "Sep 2021 - Ene 2022",
+      "title": "Becario de Desarrollo de Software",
+      "subtitle": "TechMahindra · Proyecto interno",
+      "highlights": [
+        "Construí APIs REST y lógica backend con microservicios Java y Spring Boot para automatizar la creación de CVs de empleados",
+        "Contenericé los servicios con Docker y configuré un pipeline de GitLab CI"
+      ],
+      "tags": ["Java", "Spring Boot", "MySQL", "Docker", "GitLab CI"]
     },
     {
       "year": "2022",
-      "title": "Graduado de universidad",
-      "description": "Ingeniería en Sistemas Computacionales completada :)"
+      "title": "¡Graduado!",
+      "subtitle": "Ingeniería en Sistemas Computacionales",
+      "highlights": [
+        "Promedio más alto de mi generación (97.77/100)",
+        "Participé en el Coding Cup TecNM (2019, 2020) y en Google Hash Code (2019)"
+      ]
     },
     {
       "year": "2017",
-      "title": "Inicio de estudios de Ingeniería",
-      "description": "Ingeniería en Sistemas Computacionales iniciada"
+      "title": "¡Inicio de la Ingeniería!",
+      "subtitle": "Instituto Tecnológico de Ciudad Guzmán",
+      "highlights": [
+        "Comencé mi camino en la ingeniería de software"
+      ]
     }
   ],
   "projects": {

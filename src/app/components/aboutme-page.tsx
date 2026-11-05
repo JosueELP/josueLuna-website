@@ -37,7 +37,7 @@ export default function AboutMe({ dictionary } : AboutMeProps) {
       <div className={classNames(styles.aboutMeExtraContent)}>
         <div className={styles.aboutMeExtraContentContainer}>
           <h3>{aboutMe.technologies}</h3>
-          <Tecnologies/>
+          <Tecnologies groupLabels={aboutMe.technologyGroups}/>
         </div>
         <div className={styles.aboutMeExtraContentContainer}>
           <h3>{aboutMe.timelineTitle}</h3>
