@@ -5,7 +5,9 @@ export type Locale = 'en-US' | 'es-US' | 'en-MX' | 'es-MX';
 export interface TimelineEntry {
   year: string;
   title: string;
-  description: string;
+  subtitle?: string;
+  highlights: string[];
+  tags?: string[];
 }
 
 export interface Dictionary {
@@ -29,6 +31,14 @@ export interface Dictionary {
     biographyIntro: string;
     biographyLearning: string;
     technologies: string;
+    technologyGroups: {
+      languages: string;
+      frameworks: string;
+      data: string;
+      cloud: string;
+      monitoring: string;
+      tools: string;
+    };
     timelineTitle: string;
   };
   timeline: TimelineEntry[];

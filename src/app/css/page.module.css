@@ -370,6 +370,8 @@
 .aboutMeExtraContent {
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
+  gap: 3rem;
   width: 70%;
   margin-top: 30px;
 }
@@ -377,48 +379,65 @@
 /* Technologies logos classes */
 .techStackContainer {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 400px;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 460px;
   padding: 1rem;
 }
 
-.techLogo {
-  transition: filter 0.3s ease;
-  filter: grayscale(100%);
+.techGroupTitle {
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent-color);
+  padding-bottom: 0.375rem;
+  margin-bottom: 0.75rem;
+  border-bottom: 1px solid var(--accent-color-muted);
 }
 
-.techLogo:hover {
-  filter: none;
+.techGrid {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
+  gap: 1rem 0.5rem;
 }
 
-.techLogoText {
-  transition-property: opacity;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
-}
-
-.techLogoContainer {
+.techItem {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-left: 5px;
-  margin-right: 5px;
+  gap: 0.5rem;
+  color: var(--font-color);
 }
 
-.aboutMeExtraContentContainer { 
+.techIcon {
+  width: 32px;
+  height: 32px;
+  fill: currentColor;
+  opacity: 0.7;
+  transition: color 0.2s ease, opacity 0.2s ease, transform 0.2s ease;
+}
+
+.techItem:hover .techIcon {
+  color: var(--brand-color);
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
+.techName {
+  font-size: 0.6875rem;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.aboutMeExtraContentContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.opacity {
-  opacity: 100;
-}
-
-.noOpacity {
-  opacity: 0;
+  flex: 1 1 0;
+  min-width: 0;
 }
 
 .flexInlineContainer {
@@ -625,21 +644,23 @@
   .aboutMeExtraContent {
     display: flex;
     flex-direction: column;
-    width: 70%;
+    gap: 2rem;
+    width: 90%;
+  }
+
+  .aboutMeExtraContentContainer {
+    width: 100%;
   }
 
   .aboutMeContainer {
     height: auto;
   }
 
-  .techLogo {
-    filter: none;
+  .techIcon {
+    color: var(--brand-color);
+    opacity: 1;
   }
 
-  .noOpacity {
-    opacity: 100;
-  }
-  
 }
 
 /* Tablet and Smaller Desktop */
